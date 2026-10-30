@@ -1,5 +1,4 @@
 <?php
-// 1. Array multidimensi data mata kuliah
 $matkul = [
     [
         "nama" => "Algoritma dan Pemrograman",
@@ -28,7 +27,6 @@ $matkul = [
     ]
 ];
 
-// 2. Fungsi helper untuk menghitung bobot dan huruf
 function hitungBobot($nilai) {
     if ($nilai >= 85) {
         return ["huruf" => "A", "bobot" => 4.0];
@@ -43,7 +41,6 @@ function hitungBobot($nilai) {
     }
 }
 
-// Variabel perhitungan IPS
 $totalSKS = 0;
 $totalNilai = 0;
 $totalBobot = 0;
@@ -90,7 +87,6 @@ $totalSKSLulus = 0;
             text-align: left;
         }
 
-        /* 4. Baris mata kuliah mengulang berwarna merah */
         tr.mengulang {
             background-color: #ffcccc;
             color: #990000;
@@ -122,15 +118,12 @@ $totalSKSLulus = 0;
 
     <?php foreach ($matkul as $index => $mk): ?>
         <?php
-        // Mengambil nilai huruf dan bobot
         $hasil = hitungBobot($mk["nilai"]);
         $huruf = $hasil["huruf"];
         $bobot = $hasil["bobot"];
 
-        // 3. Status kelulusan
         $status = ($bobot >= 2.0) ? "LULUS" : "MENGULANG";
 
-        // Menghitung total SKS dan nilai berbobot
         $totalSKS += $mk["sks"];
         $totalNilai += $mk["nilai"];
         $totalBobot += $mk["sks"] * $bobot;
@@ -139,7 +132,6 @@ $totalSKSLulus = 0;
             $totalSKSLulus += $mk["sks"];
         }
 
-        // 4. Memberi warna merah jika mengulang
         $kelas = ($status == "MENGULANG") ? "mengulang" : "";
         ?>
 
@@ -156,10 +148,8 @@ $totalSKSLulus = 0;
 </table>
 
 <?php
-// 5. Menghitung IPS (Indeks Prestasi Semester)
 $ips = ($totalSKS > 0) ? $totalBobot / $totalSKS : 0;
 
-// 6. Batas maksimal SKS semester depan
 $batasSKS = ($ips >= 3.00) ? 24 : 20;
 ?>
 
